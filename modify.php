@@ -22,7 +22,7 @@ include_once 'functions.php';
             die ('no session variables have been set');
         if (!empty($_POST['username']) || !empty($_POST['email']) || !empty($_POST['pwd']))
         {
-            echo 'Hello there';
+        
             $username   = trim(htmlspecialchars($_POST['username']));
             $email      = trim(htmlspecialchars($_POST['email']));
             $pwd        = trim(htmlspecialchars($_POST['pwd']));
@@ -54,6 +54,7 @@ include_once 'functions.php';
 						$stmt->execute();
 						
 						echo "username changed\n";
+						header('location: signedin.php');
 						$_SESSION['username'] = $username;
 						//header('Location: ../index.php?');
 						exit;

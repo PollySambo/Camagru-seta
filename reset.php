@@ -2,19 +2,11 @@
 
 <?php
 session_start();
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
 
-//echo $_SESSION
 echo $_SESSION['Username'] ;
 
 include 'config/database.php';
 
-	// $token 			= $_SESSION['token'];
-	// $email 			= $_SESSION['email'];
-	// $passw_new		= htmlspecialchars($_POST['psw_new']);
-	// $passw_repeat	= htmlspecialchars($_POST['psw_repeat']);
 	try
 	{
 		if (!empty($_POST['psw_new']) || !empty($_POST['psw_new']) || !empty($_POST['psw_repeat']) || !empty($_POST['psw_repeat']))
@@ -56,9 +48,6 @@ include 'config/database.php';
 				$stmt->bindParam(':psw_new', $psw_new);
 				$stmt->execute();
 				
-				// session_unset($_SESSION['token']);
-				// session_unset($_SESSION['email']);
-				//header('Location: login.php?');
 				echo "password changed!";
 				exit;		
 			}

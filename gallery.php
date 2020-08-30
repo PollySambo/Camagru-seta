@@ -1,10 +1,10 @@
 
 <?php
 session_start();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
+echo $_SESSION['Username'] ;
 require './config/database.php';
 $con = new PDO("mysql:host=$DB_DSN;dbname=$DB_NAME", $DB_USER, $DB_PASSWORD);
 $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -36,8 +36,6 @@ while($result = $stmt->fetch(PDO::FETCH_ASSOC))
     $result['liked_by'] = $result['liked_by'] ? explode('|', $result['liked_by'] ) : [];
     $img[] = $result;
 }
-
-// echo '<pre>'; print_r($img);echo '</pre>';
 
 ?>
 
@@ -79,7 +77,6 @@ try{
 	  $stmt->bindParam(':images', $images);
 	  $stmt->execute();
 	  $result = $stmt->fetch();
-	//$result = mysqli_query($con, "SELECT * FROM images");
   }
   catch(PDOException $e)
   {
@@ -117,11 +114,12 @@ try{
 				
 				
 				<li class="bomb" style="font-size: 20px;
-			  color: #501b1d; ><?php echo $pic['text'] ?></li>
+			  color: #501b1d;"><?php echo $pic['text'] ?></li>
 		  	</div>
 
-
-				<a href="like.php?type=image&image_id=<?php echo $pic['image_id']; ?>">LIKE</a>  <a href="delete.php?image_id=<?php echo $pic['image_id']; ?>">DELETE</a>
+			  
+			  <a href="like.php?type=image&image_id=<?php echo $pic['image_id']; ?>">LIKE</a>
+			  <a href="delete.php?image_id=<?php echo $pic['image_id']; ?>">DELETE</a>
 				<p><?php echo $pic['likes']; ?> people liked this.</p>
 				
                 <?php if(!empty($pic['liked_by'])): ?>
